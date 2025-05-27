@@ -18,6 +18,7 @@ app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 app.get('/', (req, res) => {
   res.json({ message: 'Hello from Vercel!' });
 });
+console.log('authRoutes loaded:', authRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/notes', notesRoutes);
 
