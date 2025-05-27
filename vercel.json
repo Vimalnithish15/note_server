@@ -2,19 +2,31 @@
   "version": 2,
   "builds": [
     {
-      "src": "./server.js",
+      "src": "server.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
+      "src": "/login",
+      "dest": "server.js"
+    },
+    {
+      "src": "/register",
+      "dest": "server.js"
+    },
+    {
+      "src": "/api/notes/(.*)",
+      "dest": "server.js"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "server.js"
     }
   ],
   "headers": [
     {
-      "source": "/api/(.*)",
+      "source": "/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Credentials", "value": "true" },
         { "key": "Access-Control-Allow-Origin", "value": "*" },
