@@ -17,7 +17,9 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
     try {
+        console.log('Looking for user:', req.body.username);
         const user = await User.findOne({ username: req.body.username });
+        console.log('User found:', user);
         if (!user) return res.status(404).json({ error: 'User not found' });
 
         const isMatch = await bcrypt.compare(req.body.password, user.password);
@@ -33,6 +35,7 @@ exports.login = async (req, res) => {
             } 
         });
     } catch (err) {
-        res.status(500).json({ error: 'Error logging in' });
+        console.log('Error in login:', err);
+        res.status(500).json({ error: 'Error logging in', details: err.message });
     }
 };
