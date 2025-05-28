@@ -13,6 +13,15 @@ exports.createNote = async (req, res) => {
     }
 };
 
+exports.getAlllistNotes = async (req, res) => {
+    try {
+        const notes = await Note.find();
+        res.json(notes);
+    } catch (err) {
+        res.status(500).json({ error: 'Error fetching notes' });
+    }
+};
+
 exports.getAllNotes = async (req, res) => {
     try {
         const notes = await Note.find({ 

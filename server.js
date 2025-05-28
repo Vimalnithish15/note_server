@@ -4,6 +4,8 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const notesRoutes = require('./routes/notesRoutes');
+const { getAlllistNotes } = require('./controllers/notesController');
+const { getAlllistUser } = require('./controllers/authController');
 
 dotenv.config();
 
@@ -20,6 +22,9 @@ app.get('/', (req, res) => {
 });
 console.log('authRoutes loaded:', authRoutes);
 app.use('/api/auth', authRoutes);
+// app.use('/api', authRoutes); 
+app.get('/getAlllistNotes', getAlllistNotes);
+app.get('/getAlllistUser', getAlllistUser);
 app.use('/api/notes', notesRoutes);
 
 const PORT = process.env.PORT || 6002;

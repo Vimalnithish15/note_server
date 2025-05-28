@@ -15,6 +15,15 @@ exports.register = async (req, res) => {
     }
 };
 
+exports.getAlllistUser = async (req, res) => {
+    try {
+        const Userslist = await User.find();
+        res.json(Userslist);
+    } catch (err) {
+        res.status(500).json({ error: 'Error fetching notes' });
+    }
+};
+
 exports.login = async (req, res) => {
     try {
         console.log('Looking for user:', req.body.username);
